@@ -22,7 +22,7 @@ public class UdpSocket{
 
     // send the packet
     byte[] data = "Hello, world!".getBytes();
-    socket.send(new DatagramPacket(data, data.length, address, 8888));
+    socket.send(new DatagramPacket(data, data.length, address, 40000));
 
     // receive the response
     byte[] buffer = new byte[1024];
