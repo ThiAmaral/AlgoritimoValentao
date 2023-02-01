@@ -4,8 +4,8 @@
  * and open the template in the editor.
  */
 package algoritimovalentao;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
+
 /**
  *
  * @author Thiago
@@ -60,10 +60,10 @@ public class DeprecatedAlgoritimoValentao {
         }  
           
         // show failed process  
-        System.out.println("Processo de id "+ listaProcessos.get(getMaxValue()).getId()+" falhou");
+        System.out.println("Processo de id "+ obterValorMaximo( listaProcessos) +" falhou");
           
         // change status to Inactive of the failed process  
-        listaProcessos.get(getMaxValue()).setAtivo(false);
+        listaProcessos.get(obterValorMaximo(listaProcessos) ).setAtivo(false);
           
         // declare and initialize variables   
         int idInicio = 0;  
@@ -76,7 +76,7 @@ public class DeprecatedAlgoritimoValentao {
               
             // iterate all the processos  
             for(int i = idInicio + 1; i< n; i++){  
-                if(processos[i].status == "ativo"){  
+                if(listaProcessos.get(i).isAtivo()){
                     System.out.println("Processo "+idInicio+" foi eleito("+idInicio+") para o processo " +i);  
                     maiorProcesso = true;  
   
@@ -88,7 +88,7 @@ public class DeprecatedAlgoritimoValentao {
                   
                 // use for loop to again iterate processos  
                 for(int i = idInicio + 1; i< n; i++){  
-                    if(processos[i].status == "ativo"){  
+                    if(listaProcessos.get(i).isAtivo()){
                         System.out.println("Processo "+i+" passou Ok("+i+") para o Processo " +idInicio);  
                     }  
   
@@ -99,14 +99,14 @@ public class DeprecatedAlgoritimoValentao {
   
             else{  
                 // get the last process from the processos that will become coordinator  
-                int coord = processos[getMaxValue()].id;  
-                  
+                int coord =obterValorMaximo(listaProcessos);
+
                 // show process that becomes the coordinator  
                 System.out.println("O processo "+coord+" foi eleito");  
                   
                   
                 for(int i = coord - 1; i>= 0; i--){  
-                    if(processos[i].status == "ativo"){  
+                    if(listaProcessos.get(i).isAtivo()){
                         System.out.println("Processo "+coord+" cedeu a eleição ("+coord+") para o processo " +i);  
                     }  
                 }  
@@ -121,28 +121,27 @@ public class DeprecatedAlgoritimoValentao {
     }  
       
     // create getMaxValue() method that returns index of max process  
-    public int getMaxValue(){  
-        int mxId = -99;  
-        int mxIdIndex = 0;  
-        for(int i = 0; i<processos.length; i++){  
-            if(processos[i].status == "ativo" && processos[i].id >mxId){  
-                mxId = processos[i].id;  
+    public static int getMaxValue(List<Processo> listaProcessos){
+          int mxId = -99;
+        int mxIdIndex = 0;
+        for(int i = 0; i<listaProcessos.size(); i++){
+            if(listaProcessos.get(i).isAtivo() && listaProcessos.get(i).getId() >mxId){
+                mxId = listaProcessos.get(i).getId();
                 mxIdIndex = i;  
             }  
         }  
         return mxIdIndex;  
-    }  
+    }
+
+    public static int obterValorMaximo(List<Processo> listaProcessos) {
+        Processo processo = Collections.max(listaProcessos, Comparator.comparingInt(processo1 -> processo1.getId()));
+        return processo.getId();
+    }
+
+    public Processo obterProcessoComMaiorId(List<Processo> listaProcessos) {
+        Processo processo = Collections.max(listaProcessos, Comparator.comparingInt(processo1 -> processo1.getId()));
+        return processo;
+    }
       
-    // main() method start  
-    public static void main(String[] args) {  
-          
-        // create instance of the BullyAlgoExample2 class  
-        DeprecatedAlgoritimoValentao bully = new DeprecatedAlgoritimoValentao();  
-          
-        // call ring() and performElection() method  
-        bully.ring();  
-        bully.performElection();  
-  
-    }  
-    
+
 }

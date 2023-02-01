@@ -32,9 +32,9 @@ public class Principal {
                         processos.add(processo);
                         System.out.println("Digite a mensagem");
                         String mensagem = sc.nextLine();
-                        if (!processo.existeAlgumLiderAtivo())
-                            algoritmoValentao.performElection();
-                            processo.enviarProcesso(mensagem, 40000);
+                        if (!processo.existeAlgumLiderAtivo(processos))
+                            algoritmoValentao.performElection(processos);
+                        processo.enviarProcesso(mensagem, 40000);
                         break;
                     case 2:
 
