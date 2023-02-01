@@ -5,143 +5,47 @@
  */
 package algoritimovalentao;
 import java.util.Scanner;
+
 /**
  *
  * @author Thiago
  */
-public class AlgoritimoValentao {
-    
-    //criar um novo socket, mensagem, processo/prioridade > eleito
-        // initialize variables and array  
-    class Process{  
-    // declare variables  
-    public int id;  
-    public String status;  
-      
-    // initialize variables using constructor  
-    public Process(int id){  
-        this.id = id;  
-        this.status = "ativo";  
-    }  
-}  
-    Scanner sc;  
-    Process[] processos;  
-    int n;  
-      
-    // initialize Scanner class object in constructor  
-    public AlgoritimoValentao(){  
-        sc= new Scanner(System.in);  
-    }  
-      
-    // create ring() method for initializing the ring  
-    public void ring(){  
-          
-        // get input from the user for processos  
-        System.out.println("Digite o número de processos");  
-        n = sc.nextInt();  
-          
-        // initialize processos array  
-        processos = new Process[n];  
-        for(int i = 0; i< n; i++){  
-            processos[i]= new Process(i);  
-        }  
-    }  
-      
-    // create election() method for electing process  
-    public void performElection(){  
-  
-        // we use the sleep() method to stop the execution of the current thread  
-        try {  
-            Thread.sleep(1000);  
-        } catch (InterruptedException e) {  
-              
-            e.printStackTrace();  
-        }  
-          
-        // show failed process  
-        System.out.println("Processo de id "+processos[getMaxValue()].id+" falhou");  
-          
-        // change status to Inactive of the failed process  
-        processos[getMaxValue()].status = "inativo";  
-          
-        // declare and initialize variables   
-        int idInicio = 0;  
-        boolean overStatus = true;  
-          
-        // use while loop to repeat steps   
-        while(overStatus){  
-              
-            boolean maiorProcesso = false;  
-              
-            // iterate all the processos  
-            for(int i = idInicio + 1; i< n; i++){  
-                if(processos[i].status == "ativo"){  
-                    System.out.println("Processo "+idInicio+" foi eleito("+idInicio+") para o processo " +i);  
-                    maiorProcesso = true;  
-  
-                }  
-            }  
-              
-            // check for higher process  
-            if(maiorProcesso){  
-                  
-                // use for loop to again iterate processos  
-                for(int i = idInicio + 1; i< n; i++){  
-                    if(processos[i].status == "ativo"){  
-                        System.out.println("Processo "+i+" passou Ok("+i+") para o Processo " +idInicio);  
-                    }  
-  
-                }  
-                // increment initiator id   
-                idInicio++;  
-            }  
-  
-            else{  
-                // get the last process from the processos that will become coordinator  
-                int coord = processos[getMaxValue()].id;  
-                  
-                // show process that becomes the coordinator  
-                System.out.println("O processo "+coord+" foi eleito");  
-                  
-                  
-                for(int i = coord - 1; i>= 0; i--){  
-                    if(processos[i].status == "ativo"){  
-                        System.out.println("Processo "+coord+" cedeu a eleição ("+coord+") para o processo " +i);  
-                    }  
-                }  
-                  
-                  
-                System.out.println("Fim da Eleição");  
-                overStatus = false;  
-                break;  
-            }  
-        }  
-  
-    }  
-      
-    // create getMaxValue() method that returns index of max process  
-    public int getMaxValue(){  
-        int mxId = -99;  
-        int mxIdIndex = 0;  
-        for(int i = 0; i<processos.length; i++){  
-            if(processos[i].status == "ativo" && processos[i].id >mxId){  
-                mxId = processos[i].id;  
-                mxIdIndex = i;  
-            }  
-        }  
-        return mxIdIndex;  
-    }  
-      
-    // main() method start  
-    public static void main(String[] args) {  
-          
-        // create instance of the BullyAlgoExample2 class  
-        AlgoritimoValentao bully = new AlgoritimoValentao();  
-          
-        // call ring() and performElection() method  
-        bully.ring();  
-        bully.performElection();  
-  
-    }  
-    
+
+class AlgoritimoValentao {  
+  public static void Main(String args[]) { 
+   Scanner sc = new Scanner( System.in);
+        int opcao;
+        do {
+            System.out.println(".........");
+            System.out.println("1. Subir novo processo");
+            System.out.println("2. Enviar Mensagem");
+            System.out.println("3. Derrubar processo");
+            System.out.println("4. Realizar Nova Eleicao");
+            System.out.println("5. Sair");
+            opcao = sc.nextInt();
+            switch (opcao) {
+                case 1:
+                    System.out.println("Novo Processo");
+                    //nao sei o que fazer aqui
+                    break;
+                case 2:
+                    System.out.println("Nova Mensagem");
+                    //Digite a mensagem a ser enviada
+                    //Verifica se possui coordenador
+                    //se sim, envia mensagem
+                    //se nao, inicia nova eleicao
+                    //verifica novamente se possui coordenador
+                    break;
+                case 3:
+                    System.out.println("Derrubar processo");
+                    //Digite o IdProcesso a ser derrubado
+                    //Se inativo, o processo já está inativo,
+                    //Se nao, o processo nao existe
+                case 4:
+                    System.out.println("Nova Eleicao");
+                    //Forca uma nova eleicao com os status dos processos mantidos os mesmos
+                    //nao sei se e nescessario essa opcao
+            }
+        } while(opcao != 5);
+  } 
 }
