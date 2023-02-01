@@ -34,6 +34,7 @@ public class Principal {
                         String mensagem = sc.nextLine();
                         if (!processo.existeAlgumLiderAtivo(processos))
                             algoritmoValentao.performElection(processos);
+
                         processo.enviarProcesso(mensagem, 40000);
                         break;
                     case 2:
