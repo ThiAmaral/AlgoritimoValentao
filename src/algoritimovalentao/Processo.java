@@ -2,10 +2,12 @@ package algoritimovalentao;
 
 import java.io.IOException;
 import java.net.*;
+import java.util.List;
 
 public class Processo{
     private int id;
     private boolean status;
+    private boolean lider;
     private DatagramSocket cliente;
     private InetAddress ip ;
 
@@ -13,6 +15,7 @@ public class Processo{
         this.id = id;
         this.status = status;
         this.cliente = new DatagramSocket();
+        this.lider = false;
         this.ip = InetAddress.getByName("127.0.0.1");
     }
 
@@ -27,6 +30,17 @@ public class Processo{
         } finally {
             this.cliente.close();
         }
+    }
 
+    public boolean existeAlgumLiderAtivo(List<Processo> processos){
+        boolean temLider = false;
+        for(Processo p: processos) {
+            if (p.lider && p.status) {
+                temLider = true;
+                break;
+            }
+        }
+         return temLider;
+        }
+    }
 
-    }}
