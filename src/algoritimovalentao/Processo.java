@@ -1,51 +1,33 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package algoritimovalentao;
 
-/**
- *
- * @author Thiago
- */
-import java.util.ArrayList;
+import java.io.IOException;
+import java.net.*;
 
-public class Processo {
-  int processoId;
-  boolean valentao;
+public class Processo{
+    int id;
+    boolean status;
+    int porta;
+    DatagramSocket cliente;
+    InetAddress ip ;
 
-  public Processo(int processoId) {
-    this.processoId = processoId;
-    this.valentao = false;
-  }
-
-  public void elect() {
-    ArrayList<Processo> processos = getProcessos();
-    for (Processo p : processos) {
-      if (p.processoId > this.processoId) {
-        p.enviaMensagemEleicao();
-      }
+    public Processo() throws SocketException, UnknownHostException {
+        this.cliente = new DatagramSocket();
+        this.ip = InetAddress.getByName("127.0.0.1");
     }
-  }
 
-  public void recebeMensagemEleicao() {
-    this.valentao = false;
-    enviaMensagemValentao();
-  }
+    public void iniciarProcesso(int id, boolean status, String mensagem, int porta) {
+        this.id = id;
+        this.status = status;
+        this.porta = porta;
+        byte[] mensagemEmBytes = mensagem.getBytes();
+        DatagramPacket pacote = new DatagramPacket(mensagemEmBytes, mensagemEmBytes.length, this.ip, porta);
+        try {
+            this.cliente.send(pacote);
+        } catch (IOException e) {
+            System.out.println("Erro ao enviar pacote UDP" + e.getMessage());
+        } finally {
+            this.cliente.close();
+        }
 
-  public void enviaMensagemEleicao() {
-    // Code to send election message to higher-ranked process
-  }
 
-  public void enviaMensagemValentao() {
-    // Code to send coordinator message to lower-ranked processes
-    this.valentao = true;
-  }
-
-  public ArrayList<Processo> getProcessos() {
-    // Code to retrieve a list of all processes
-    return new ArrayList<Processo>();
-  }
-}
-
+    }}

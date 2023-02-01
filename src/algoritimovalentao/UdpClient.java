@@ -11,7 +11,7 @@ import java.net.InetAddress;
  *
  * @author Thiago
  */
-public class UdpServer {
+public class UdpClient {
     public static void main(String[] args) throws Exception {
 
         DatagramSocket tomadaServidora = new DatagramSocket(40000);
