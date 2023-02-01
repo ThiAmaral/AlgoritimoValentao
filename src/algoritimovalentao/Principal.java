@@ -11,7 +11,7 @@ public class Principal {
     public static void main(String[] args) throws SocketException, UnknownHostException {
             Servidor servidor = new Servidor(40000);
         List<Processo> processos = new ArrayList<>() ;
-        Processo processo = null;
+       DeprecatedAlgoritimoValentao algoritmoValentao = new DeprecatedAlgoritimoValentao();
             Scanner sc = new Scanner( System.in);
             int opcao;
             do {
@@ -28,10 +28,16 @@ public class Principal {
                         System.out.println("Digite o id do processo");
                         int id = sc.nextInt();
 
-                        processo = new Processo(id,true);
+                        Processo processo = new Processo(id,true);
                         processos.add(processo);
+                        System.out.println("Digite a mensagem");
+                        String mensagem = sc.nextLine();
+                        if (!processo.existeAlgumLiderAtivo())
+                            algoritmoValentao.performElection();
+                            processo.enviarProcesso(mensagem, 40000);
                         break;
                     case 2:
+
                         System.out.println("Nova Mensagem");
 
                         //Digite a mensagem a ser enviada
@@ -40,10 +46,7 @@ public class Principal {
                         //se nao, inicia nova eleicao
                         //verifica novamente se possui coordenador
 
-                        System.out.println("Digite a mensagem");
-                        String mensagem = sc.nextLine();
-                        if (processo.existeAlgumLiderAtivo())
-                        processo.enviarProcesso(mensagem, 40000);
+
                         break;
                     case 3:
                         System.out.println("Derrubar processo");

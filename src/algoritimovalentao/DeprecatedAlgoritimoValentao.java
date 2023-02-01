@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package algoritimovalentao;
+import java.util.List;
 import java.util.Scanner;
 /**
  *
@@ -48,7 +49,7 @@ public class DeprecatedAlgoritimoValentao {
     }  
       
     // create election() method for electing process  
-    public void performElection(){  
+    public void performElection(List<Processo> listaProcessos){
   
         // we use the sleep() method to stop the execution of the current thread  
         try {  
@@ -59,10 +60,10 @@ public class DeprecatedAlgoritimoValentao {
         }  
           
         // show failed process  
-        System.out.println("Processo de id "+processos[getMaxValue()].id+" falhou");  
+        System.out.println("Processo de id "+ listaProcessos.get(getMaxValue()).getId()+" falhou");
           
         // change status to Inactive of the failed process  
-        processos[getMaxValue()].status = "inativo";  
+        listaProcessos.get(getMaxValue()).setAtivo(false);
           
         // declare and initialize variables   
         int idInicio = 0;  
