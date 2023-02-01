@@ -6,19 +6,18 @@ import java.net.*;
 public class Processo{
     int id;
     boolean status;
-    int porta;
     DatagramSocket cliente;
     InetAddress ip ;
 
-    public Processo() throws SocketException, UnknownHostException {
+    public Processo(int id, boolean status) throws SocketException, UnknownHostException {
+        this.id = id;
+        this.status = status;
         this.cliente = new DatagramSocket();
         this.ip = InetAddress.getByName("127.0.0.1");
     }
 
-    public void iniciarProcesso(int id, boolean status, String mensagem, int porta) {
-        this.id = id;
-        this.status = status;
-        this.porta = porta;
+    public void enviarProcesso( String mensagem, int porta) {
+
         byte[] mensagemEmBytes = mensagem.getBytes();
         DatagramPacket pacote = new DatagramPacket(mensagemEmBytes, mensagemEmBytes.length, this.ip, porta);
         try {
