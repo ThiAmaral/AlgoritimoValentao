@@ -31,14 +31,14 @@ public class Processo {
 
   public void recebeMensagemEleicao() {
     this.valentao = false;
-    enviaMensagemValenao();
+    enviaMensagemValentao();
   }
 
   public void enviaMensagemEleicao() {
     // Code to send election message to higher-ranked process
   }
 
-  public void enviaMensagemValenao() {
+  public void enviaMensagemValentao() {
     // Code to send coordinator message to lower-ranked processes
     this.valentao = true;
   }

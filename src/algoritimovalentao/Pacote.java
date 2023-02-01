@@ -28,7 +28,7 @@ public class Pacote {
       
     // initialize variables and array  
     Scanner sc;  
-    Process[] processes;  
+    Process[] processos;  
     int n;  
       
     // initialize Scanner class object in constructor  
@@ -39,14 +39,14 @@ public class Pacote {
     // create ring() method for initializing the ring  
     public void ring(){  
           
-        // get input from the user for processes  
+        // get input from the user for processos  
         System.out.println("Digite o número de processos");  
         n = sc.nextInt();  
           
-        // initialize processes array  
-        processes = new Process[n];  
+        // initialize processos array  
+        processos = new Process[n];  
         for(int i = 0; i< n; i++){  
-            processes[i]= new Process(i);  
+            processos[i]= new Process(i);  
         }  
     }  
       
@@ -62,53 +62,53 @@ public class Pacote {
         }  
           
         // show failed process  
-        System.out.println("Processo de id "+processes[getMaxValue()].id+" falhou");  
+        System.out.println("Processo de id "+processos[getMaxValue()].id+" falhou");  
           
         // change status to Inactive of the failed process  
-        processes[getMaxValue()].status = "Inativo";  
+        processos[getMaxValue()].status = "Inativo";  
           
         // declare and initialize variables   
-        int idOfInitiator = 0;  
+        int idInicio = 0;  
         boolean overStatus = true;  
           
         // use while loop to repeat steps   
         while(overStatus){  
               
-            boolean higherProcesses = false;  
+            boolean maiorProcesso = false;  
               
-            // iterate all the processes  
-            for(int i = idOfInitiator + 1; i< n; i++){  
-                if(processes[i].status == "ativo"){  
-                    System.out.println("Processo "+idOfInitiator+" foi Eleito("+idOfInitiator+") para o Processo" +i);  
-                    higherProcesses = true;  
+            // iterate all the processos  
+            for(int i = idInicio + 1; i< n; i++){  
+                if(processos[i].status == "ativo"){  
+                    System.out.println("Processo "+idInicio+" foi Eleito("+idInicio+") para o Processo" +i);  
+                    maiorProcesso = true;  
   
                 }  
             }  
               
             // check for higher process  
-            if(higherProcesses){  
+            if(maiorProcesso){  
                   
-                // use for loop to again iterate processes  
-                for(int i = idOfInitiator + 1; i< n; i++){  
-                    if(processes[i].status == "ativo"){  
-                        System.out.println("Processo "+i+"Passou Ok("+i+") para o Processo" +idOfInitiator);  
+                // use for loop to again iterate processos  
+                for(int i = idInicio + 1; i< n; i++){  
+                    if(processos[i].status == "ativo"){  
+                        System.out.println("Processo "+i+"Passou Ok("+i+") para o Processo" +idInicio);  
                     }  
   
                 }  
                 // increment initiator id   
-                idOfInitiator++;  
+                idInicio++;  
             }  
   
             else{  
-                // get the last process from the processes that will become coordinator  
-                int coord = processes[getMaxValue()].id;  
+                // get the last process from the processos that will become coordinator  
+                int coord = processos[getMaxValue()].id;  
                   
                 // show process that becomes the coordinator  
                 System.out.println("O processo "+coord+" foi eleito");  
                   
                   
                 for(int i = coord - 1; i>= 0; i--){  
-                    if(processes[i].status == "ativo"){  
+                    if(processos[i].status == "ativo"){  
                         System.out.println("Processo "+coord+"cedeu a eleição ("+coord+") para o processo " +i);  
                     }  
                 }  
@@ -126,9 +126,9 @@ public class Pacote {
     public int getMaxValue(){  
         int mxId = -99;  
         int mxIdIndex = 0;  
-        for(int i = 0; i<processes.length; i++){  
-            if(processes[i].status == "ativo" && processes[i].id >mxId){  
-                mxId = processes[i].id;  
+        for(int i = 0; i<processos.length; i++){  
+            if(processos[i].status == "ativo" && processos[i].id >mxId){  
+                mxId = processos[i].id;  
                 mxIdIndex = i;  
             }  
         }  
