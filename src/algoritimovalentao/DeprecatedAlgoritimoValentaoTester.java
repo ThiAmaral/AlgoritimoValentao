@@ -9,7 +9,7 @@ import java.util.Scanner;
  *
  * @author Thiago
  */
-public class AlgoritimoValentaoTester {
+public class DeprecatedAlgoritimoValentaoTester {
 
     /**
      * @param args the command line arguments
@@ -17,7 +17,7 @@ public class AlgoritimoValentaoTester {
     static boolean[] state = new boolean[5];
     int coordinator;
 
-    public AlgoritimoValentaoTester() {
+    public DeprecatedAlgoritimoValentaoTester() {
     }
 
     public static void up(int up) {

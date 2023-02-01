@@ -13,7 +13,7 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 
-public class UdpSocket{
+public class DeprecatedUdpSocket{
   public static void main(String[] args) throws Exception {
     DatagramSocket socket = new DatagramSocket();
 

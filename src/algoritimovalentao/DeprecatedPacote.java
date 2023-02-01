@@ -24,7 +24,7 @@ class Process{
     }  
 }  
 
-public class Pacote {  
+public class DeprecatedPacote {  
       
     // initialize variables and array  
     Scanner sc;  
@@ -32,7 +32,7 @@ public class Pacote {
     int n;  
       
     // initialize Scanner class object in constructor  
-    public Pacote(){  
+    public DeprecatedPacote(){  
         sc= new Scanner(System.in);  
     }  
       
@@ -139,7 +139,7 @@ public class Pacote {
     public static void main(String[] args) {  
           
         // create instance of the BullyAlgoExample2 class  
-        Pacote bully = new Pacote();  
+        DeprecatedPacote bully = new DeprecatedPacote();  
           
         // call ring() and performElection() method  
         bully.ring();  

@@ -11,7 +11,7 @@ import java.net.InetAddress;
  *
  * @author Thiago
  */
-public class UdpClient {
+public class DeprecatedUdpClient {
     public static void main(String[] args) throws Exception {
 
         DatagramSocket tomadaServidora = new DatagramSocket(40000);
