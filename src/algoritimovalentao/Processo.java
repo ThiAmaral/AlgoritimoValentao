@@ -4,10 +4,10 @@ import java.io.IOException;
 import java.net.*;
 
 public class Processo{
-    int id;
-    boolean status;
-    DatagramSocket cliente;
-    InetAddress ip ;
+    private int id;
+    private boolean status;
+    private DatagramSocket cliente;
+    private InetAddress ip ;
 
     public Processo(int id, boolean status) throws SocketException, UnknownHostException {
         this.id = id;
